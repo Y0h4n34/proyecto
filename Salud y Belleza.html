@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eco Spa - Salud y Belleza Ecológica</title>
-  <style>
+<style>
     * {
       margin: 0;
       padding: 0;
@@ -17,7 +17,7 @@
       color: #2c3e2c;
       line-height: 1.6;
       overflow-x: hidden;
-      padding-top: 60px; /* Espacio para el menú móvil */
+      padding-top: 40px;
     }
 
     /* Animaciones de entrada */
@@ -78,11 +78,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px;
+      padding: 20px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      margin-top: -60px; /* Compensa el padding del body */
+      margin-top: -40px;
     }
 
     @keyframes gradientShift {
@@ -160,11 +160,12 @@
       animation: fadeInUp 1s ease-out 0.9s both;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.5s ease;
     }
 
     nav.active {
       max-height: 500px;
+      padding: 10px 0;
     }
 
     nav a {
@@ -177,6 +178,7 @@
       overflow: hidden;
       width: 100%;
       text-align: center;
+      display: block;
     }
 
     nav a::before {
@@ -199,28 +201,47 @@
       transform: translateY(-2px);
     }
 
-    /* Botón de menú móvil */
+    /* Botón de menú hamburguesa mejorado */
     .menu-toggle {
-      display: none;
+      display: block;
       position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #8bc34a;
-      color: white;
+      top: 15px;
+      right: 15px;
+      background: transparent;
       border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
       z-index: 1001;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      padding: 5px;
       transition: all 0.3s ease;
     }
 
-    .menu-toggle:hover {
-      background: #7cb342;
-      transform: scale(1.1);
+    .menu-toggle svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .menu-toggle svg rect {
+      fill: #4a7c59;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle:hover svg rect {
+      fill: #3a6a49;
+    }
+
+    /* Cuando el menú está activo, transformamos las barras en una X */
+    .menu-toggle.active svg rect:nth-child(1) {
+      transform: translateY(30px) rotate(45deg);
+    }
+
+    .menu-toggle.active svg rect:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active svg rect:nth-child(3) {
+      transform: translateY(-30px) rotate(-45deg);
     }
 
     /* Secciones con animaciones */
@@ -494,7 +515,7 @@
       
       header {
         margin-top: 0;
-        min-height: 100vh;
+        min-height: 80vh;
       }
       
       .header-container {
@@ -516,11 +537,13 @@
         max-height: none;
         overflow: visible;
         justify-content: center;
+        padding: 0 !important;
       }
 
       nav a {
         width: auto;
         padding: 20px 25px;
+        display: inline-block;
       }
       
       .menu-toggle {
@@ -572,9 +595,13 @@
 
 <div class="scroll-indicator"></div>
 
-<!-- Botón de menú móvil -->
+<!-- Botón de menú hamburguesa mejorado -->
 <button class="menu-toggle" id="menuToggle" aria-label="Menú">
-  <i class="fas fa-bars"></i>
+  <svg viewBox="0 0 100 80" width="30" height="30">
+    <rect width="100" height="15" rx="8"></rect>
+    <rect y="30" width="100" height="15" rx="8"></rect>
+    <rect y="60" width="100" height="15" rx="8"></rect>
+  </svg>
 </button>
 
 <header>
@@ -591,6 +618,7 @@
 </header>
 
 <nav id="mainNav">
+  <a href="index.html">Inicio</a>
   <a href="#historia">Historia</a>
   <a href="#lema">Lema</a>
   <a href="#servicios">Servicios</a>
@@ -600,7 +628,7 @@
 
 <section id="historia">
   <h2>Nuestra Historia</h2>
-  <p style="text-align: justify;">Soy Rosalina López es una mujer luchadora originaria de la comunidad Santa Marta, actualmente propietaria de Eco Spa "Salud y Belleza Ecológica".</p>
+  <p style="text-align: justify;">Soy Rosalina López una mujer luchadora originaria de la comunidad Santa Marta, actualmente propietaria de Eco Spa "Salud y Belleza Ecológica".</p>
   <p style="text-align: justify;">Desde pequeña soñaba con ser mi propia jefa; siempre tuve la idea de montar mi propio negocio, y gracias a al esfuerzo y lucha constante he logrado hacer realidad lo que en un pasado solo estaba en mi mente.</p>
   <p style="text-align: justify;">Con el pasar de los años, me voy interesando por la parte estética, cuidado de la piel y en general todo lo relacionado con la belleza exterior en mujeres y hombres.</p> 
   <p style="text-align: justify;">Por necesidades económicas me veo obligada a salir de la comunidad hacia la zona urbana en busca de mejores oportunidades laborales, luego de 18 años aproximadamente de estar fuera de la comunidad y de haberme expuesto a diferentes condiciones laborales, decidí por fin atreverme a montar mi propio emprendimiento en Sensuntepeque Cabañas y aunque este negocio está fuera de la comunidad, siempre mantengo el espíritu de apoyar a la población de Santa Marta, a través de los diferentes servicios que en Eco Spa se ofrecen.</p>
@@ -697,23 +725,27 @@
 
 <!-- Botón scroll to top -->
 <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Volver arriba">
-  <i class="fas fa-arrow-up"></i>
+  ↑
 </button>
 
 <script>
-// Menú móvil
+// Menú hamburguesa mejorado
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 
+// Mostrar el menú al cargar la página si es móvil
+if (window.innerWidth <= 768) {
+  mainNav.style.maxHeight = '0';
+}
+
 menuToggle.addEventListener('click', function() {
+  this.classList.toggle('active');
   mainNav.classList.toggle('active');
-  const icon = this.querySelector('i');
+  
   if (mainNav.classList.contains('active')) {
-    icon.classList.remove('fa-bars');
-    icon.classList.add('fa-times');
+    mainNav.style.maxHeight = '500px';
   } else {
-    icon.classList.remove('fa-times');
-    icon.classList.add('fa-bars');
+    mainNav.style.maxHeight = '0';
   }
 });
 
@@ -722,8 +754,8 @@ document.querySelectorAll('nav a').forEach(link => {
   link.addEventListener('click', function() {
     if (window.innerWidth <= 768) {
       mainNav.classList.remove('active');
-      menuToggle.querySelector('i').classList.remove('fa-times');
-      menuToggle.querySelector('i').classList.add('fa-bars');
+      menuToggle.classList.remove('active');
+      mainNav.style.maxHeight = '0';
     }
   });
 });
@@ -753,20 +785,6 @@ window.addEventListener('scroll', () => {
   } else {
     document.querySelector('.scroll-to-top').classList.remove('show');
   }
-  
-  // Ocultar menú al hacer scroll hacia abajo en móvil
-  if (window.innerWidth <= 768) {
-    const currentScrollPos = window.pageYOffset;
-    if (Math.abs(window.lastScrollPos - currentScrollPos) > 50) {
-      if (currentScrollPos > window.lastScrollPos && currentScrollPos > 100) {
-        // Scroll hacia abajo
-        mainNav.classList.remove('active');
-        menuToggle.querySelector('i').classList.remove('fa-times');
-        menuToggle.querySelector('i').classList.add('fa-bars');
-      }
-      window.lastScrollPos = currentScrollPos;
-    }
-  }
 });
 
 // Inicializar lastScrollPos
@@ -783,13 +801,15 @@ window.addEventListener('load', () => {
 // Smooth scroll para navegación
 document.querySelectorAll('nav a').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    if (this.getAttribute('href').startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
   });
 });
@@ -809,11 +829,20 @@ function scrollToTop() {
   });
 }
 
-// Añadir Font Awesome para el icono del menú
-const faScript = document.createElement('script');
-faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
-faScript.crossOrigin = 'anonymous';
-document.head.appendChild(faScript);
+// Manejar cambios de tamaño de pantalla
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 768) {
+    // En desktop, asegurarse de que el menú esté visible
+    mainNav.style.maxHeight = 'none';
+    mainNav.classList.remove('active');
+    menuToggle.classList.remove('active');
+  } else {
+    // En móvil, asegurarse de que el menú esté cerrado inicialmente
+    if (!mainNav.classList.contains('active')) {
+      mainNav.style.maxHeight = '0';
+    }
+  }
+});
 </script>
 
 </body>
