@@ -1164,8 +1164,7 @@
         </div>
     </section>
 
-    
-<!-- Menu Section -->
+  <!-- Menu Section -->
 <section id="menu" class="menu">
     <!-- Botón de descarga agregado -->
     <div class="download-container">
@@ -1411,48 +1410,72 @@
     </div>
 </section>
 
-<!-- Scripts para generar el PDF -->
+<!-- Scripts mejorados para generar el PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-    // Esperar a que el DOM esté cargado
     document.addEventListener('DOMContentLoaded', function() {
         const downloadBtn = document.getElementById('download-pdf');
         
         downloadBtn.addEventListener('click', generatePDF);
         
-        function generatePDF() {
-            // Usar jsPDF
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('p', 'mm', 'a4');
-            const menuSection = document.querySelector('.menu');
-            
-            // Mostrar mensaje mientras se genera
-            downloadBtn.textContent = 'Generando PDF...';
-            downloadBtn.disabled = true;
-            
-            html2canvas(menuSection, {
-                scale: 2, // Mejor calidad
-                logging: false,
-                useCORS: true,
-                scrollY: -window.scrollY // Evitar problemas con scroll
-            }).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
+        async function generatePDF() {
+            try {
+                // Usar jsPDF
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const menuSection = document.getElementById('menu');
+                
+                // Mostrar mensaje mientras se genera
+                downloadBtn.textContent = 'Generando PDF...';
+                downloadBtn.disabled = true;
+                
+                // Crear un clon del elemento para evitar problemas de estilo
+                const clone = menuSection.cloneNode(true);
+                clone.style.position = 'absolute';
+                clone.style.left = '-9999px';
+                clone.style.width = menuSection.offsetWidth + 'px';
+                clone.style.backgroundColor = '#fff'; // Fondo blanco para mejor impresión
+                document.body.appendChild(clone);
+                
+                // Opciones mejoradas para html2canvas
+                const canvas = await html2canvas(clone, {
+                    scale: 2, // Mejor calidad
+                    logging: true,
+                    useCORS: true,
+                    scrollX: 0,
+                    scrollY: 0,
+                    windowWidth: clone.scrollWidth,
+                    windowHeight: clone.scrollHeight,
+                    allowTaint: true,
+                    letterRendering: true,
+                    backgroundColor: '#ffffff'
+                });
+                
+                const imgData = canvas.toDataURL('image/png', 1.0);
                 const imgWidth = doc.internal.pageSize.getWidth() - 20;
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
-                doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-                doc.save('menu-restaurante.pdf');
+                // Ajustar para múltiples páginas si es necesario
+                const pageHeight = doc.internal.pageSize.getHeight();
+                let position = 0;
                 
+                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                
+                // Eliminar el clon
+                document.body.removeChild(clone);
+                
+                // Guardar el PDF
+                doc.save('menu-restaurante-completo.pdf');
+                
+            } catch (error) {
+                console.error('Error al generar PDF:', error);
+                alert('Ocurrió un error al generar el PDF. Por favor intenta nuevamente.');
+            } finally {
                 // Restaurar texto del botón
                 downloadBtn.textContent = '📥 Descargar Menú en PDF';
                 downloadBtn.disabled = false;
-            }).catch(error => {
-                console.error('Error al generar PDF:', error);
-                downloadBtn.textContent = '📥 Descargar Menú en PDF';
-                downloadBtn.disabled = false;
-                alert('Ocurrió un error al generar el PDF. Por favor intenta nuevamente.');
-            });
+            }
         }
     });
 </script>
@@ -1493,7 +1516,8 @@
         cursor: not-allowed;
         transform: none;
     }
-</style>
+</style>  
+
 
     <!-- Gallery Section -->
     <section id="galeria" class="gallery">
