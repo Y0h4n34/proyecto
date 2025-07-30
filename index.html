@@ -1075,6 +1075,482 @@
     </style>
 </section>
 
+
+<!-- Sección de Comentarios con Colores Vibrantes -->
+<section id="comentarios" class="py-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <!-- Efecto de burbujas -->
+    <div class="bubbles">
+        <div class="bubble" style="--size: 3rem; --distance: 6rem; --position: 10%; --time: 8s; --delay: 0s;"></div>
+        <div class="bubble" style="--size: 2rem; --distance: 5rem; --position: 20%; --time: 5s; --delay: 1s;"></div>
+        <div class="bubble" style="--size: 4rem; --distance: 7rem; --position: 35%; --time: 7s; --delay: 2s;"></div>
+        <div class="bubble" style="--size: 6rem; --distance: 9rem; --position: 50%; --time: 11s; --delay: 0s;"></div>
+        <div class="bubble" style="--size: 3rem; --distance: 6rem; --position: 65%; --time: 6s; --delay: 1s;"></div>
+        <div class="bubble" style="--size: 5rem; --distance: 8rem; --position: 75%; --time: 8s; --delay: 3s;"></div>
+    </div>
+    
+    <!-- Contenedor principal -->
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <!-- Encabezado con efecto neón mejorado -->
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3" style="
+                        color: #fff;
+                        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073;
+                        animation: neonGlow 1.5s ease-in-out infinite alternate;
+                    ">💬 Comentarios & Sugerencias</h2>
+                    <p class="lead" style="color: rgba(255, 255, 255, 0.9); font-weight: 300;">Tu voz es importante para nosotros. ¡Comparte tus ideas y experiencias!</p>
+                    <div class="stars">
+                        <i class="fas fa-star" style="color: #FFD700;"></i>
+                        <i class="fas fa-star" style="color: #FFD700;"></i>
+                        <i class="fas fa-star" style="color: #FFD700;"></i>
+                    </div>
+                </div>
+
+                <!-- Formulario con diseño moderno -->
+                <div class="card border-0 mb-5" style="
+                    background: rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(10px);
+                    border-radius: 15px;
+                    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+                    overflow: hidden;
+                ">
+                    <div class="card-body p-4 p-md-5">
+                        <form id="formComentarios">
+                            <div class="row g-4">
+                                <!-- Nombre -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required 
+                                               style="background: rgba(255, 255, 255, 0.8); border: none; border-bottom: 2px solid #667eea;">
+                                        <label for="nombre" style="color: #555;">Tu Nombre</label>
+                                    </div>
+                                </div>
+                            
+                                
+                                <!-- Tipo de Comentario -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="tipoComentario" required 
+                                                style="background: rgba(255, 255, 255, 0.8); border: none; border-bottom: 2px solid #667eea;">
+                                            <option value="" selected disabled>Selecciona una opción</option>
+                                            <option value="comentario">Comentario sobre la página</option>
+                                            <option value="sugerencia">Sugerir un emprendimiento</option>
+                                            <option value="experiencia">Compartir experiencia con un emprendimiento</option>
+                                        </select>
+                                        <label for="tipoComentario" style="color: #555;">Tipo de mensaje</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Mensaje -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Escribe tu mensaje aquí" id="mensaje" style="
+                                            height: 150px; 
+                                            background: rgba(255, 255, 255, 0.8); 
+                                            border: none; 
+                                            border-bottom: 2px solid #667eea;
+                                        " required></textarea>
+                                        <label for="mensaje" style="color: #555;">Tu Mensaje</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Valoración (solo para experiencias) -->
+                                <div class="col-12 d-none" id="valoracionContainer">
+                                    <div class="mb-3">
+                                        <label class="form-label" style="color: white;">Valoración del emprendimiento</label>
+                                        <div class="rating">
+                                            <input type="radio" id="star5" name="rating" value="5">
+                                            <label for="star5" class="fas fa-star" style="color: #FFD700;"></label>
+                                            <input type="radio" id="star4" name="rating" value="4">
+                                            <label for="star4" class="fas fa-star" style="color: #FFD700;"></label>
+                                            <input type="radio" id="star3" name="rating" value="3">
+                                            <label for="star3" class="fas fa-star" style="color: #FFD700;"></label>
+                                            <input type="radio" id="star2" name="rating" value="2">
+                                            <label for="star2" class="fas fa-star" style="color: #FFD700;"></label>
+                                            <input type="radio" id="star1" name="rating" value="1">
+                                            <label for="star1" class="fas fa-star" style="color: #FFD700;"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Emprendimiento (solo para sugerencias/experiencias) -->
+                                <div class="col-12 d-none" id="emprendimientoContainer">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="emprendimiento" placeholder="Nombre del emprendimiento" 
+                                               style="background: rgba(255, 255, 255, 0.8); border: none; border-bottom: 2px solid #667eea;">
+                                        <label for="emprendimiento" style="color: #555;">Nombre del emprendimiento</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Botón de enviar con gradiente animado -->
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-lg px-5 py-3" style="
+                                        background: linear-gradient(45deg, #ff8a00, #e52e71);
+                                        border: none;
+                                        color: white;
+                                        font-weight: 600;
+                                        letter-spacing: 1px;
+                                        position: relative;
+                                        overflow: hidden;
+                                        z-index: 1;
+                                        transition: all 0.4s;
+                                    ">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar Mensaje
+                                        <span style="
+                                            position: absolute;
+                                            top: 0;
+                                            left: -100%;
+                                            width: 100%;
+                                            height: 100%;
+                                            background: linear-gradient(45deg, #e52e71, #ff8a00);
+                                            transition: all 0.4s;
+                                            z-index: -1;
+                                        "></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista de Comentarios Recientes -->
+                <div class="text-center mb-4">
+                    <h4 class="fw-bold mb-3" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">✨ Comentarios Recientes</h4>
+                    <div style="
+                        width: 100px;
+                        height: 3px;
+                        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+                        margin: 15px auto;
+                    "></div>
+                </div>
+                
+                <div class="row g-4" id="comentariosLista">
+                    <!-- Mensaje inicial -->
+                    <div class="col-12 text-center py-4 empty-message">
+                        <div class="empty-state" style="
+                            padding: 30px;
+                            background: rgba(255, 255, 255, 0.1);
+                            border-radius: 15px;
+                            border: 2px dashed rgba(255, 255, 255, 0.3);
+                        ">
+                            <i class="far fa-comments fa-4x mb-3" style="color: rgba(255,255,255,0.7);"></i>
+                            <h5 style="color: white;">Aún no hay comentarios</h5>
+                            <p style="color: rgba(255,255,255,0.7);">¡Sé el primero en compartir tu opinión!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Estilos CSS personalizados -->
+<style>
+    /* Animación para el texto neón */
+    @keyframes neonGlow {
+        from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073; }
+        to { text-shadow: 0 0 15px #fff, 0 0 25px #ff4da6, 0 0 35px #ff4da6, 0 0 45px #ff4da6; }
+    }
+    
+    /* Efecto de burbujas */
+    .bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+    
+    .bubble {
+        position: absolute;
+        bottom: -100px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: rise linear infinite;
+        animation-duration: var(--time);
+        animation-delay: var(--delay);
+    }
+    
+    @keyframes rise {
+        0% {
+            bottom: -100px;
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(var(--distance));
+        }
+        100% {
+            bottom: 1080px;
+            transform: translateX(calc(-1 * var(--distance)));
+        }
+    }
+    
+    /* Efecto hover para el botón */
+    .btn:hover span {
+        left: 0;
+    }
+    
+    .btn:hover {
+        box-shadow: 0 5px 15px rgba(229, 46, 113, 0.4);
+        transform: translateY(-3px);
+    }
+    
+    /* Rating interactivo */
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+    }
+    
+    .rating > input {
+        display: none;
+    }
+    
+    .rating > label {
+        cursor: pointer;
+        width: 1.5em;
+        font-size: 1.8rem;
+        margin-right: 5px;
+        transition: all 0.2s;
+    }
+    
+    .rating > label:hover,
+    .rating > label:hover ~ label,
+    .rating > input:checked ~ label {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 5px gold);
+    }
+    
+    /* Estilos para las tarjetas de comentarios */
+    .comentario-card {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        transition: all 0.4s;
+        backdrop-filter: blur(5px);
+        border-left: 4px solid;
+        margin-bottom: 20px;
+    }
+    
+    .comentario-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .comentario-card.comentario {
+        border-left-color: #4dabf7;
+    }
+    
+    .comentario-card.sugerencia {
+        border-left-color: #69db7c;
+    }
+    
+    .comentario-card.experiencia {
+        border-left-color: #ffd43b;
+    }
+    
+    .comentario-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #4dabf7;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    
+    .comentario-autor {
+        font-weight: bold;
+        margin-bottom: 0;
+        color: white;
+    }
+    
+    .comentario-fecha {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .comentario-tipo {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .tipo-comentario {
+        background-color: rgba(77, 171, 247, 0.2);
+        color: #4dabf7;
+        border: 1px solid #4dabf7;
+    }
+    
+    .tipo-sugerencia {
+        background-color: rgba(105, 219, 124, 0.2);
+        color: #69db7c;
+        border: 1px solid #69db7c;
+    }
+    
+    .tipo-experiencia {
+        background-color: rgba(255, 212, 59, 0.2);
+        color: #ffd43b;
+        border: 1px solid #ffd43b;
+    }
+    
+    .comentario-texto {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+    }
+    
+    /* Efecto de estrellas decorativas */
+    .stars i {
+        animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes twinkle {
+        from { opacity: 0.3; transform: scale(0.9); }
+        to { opacity: 0.9; transform: scale(1.1); }
+    }
+</style>
+
+<!-- JavaScript Funcional -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Manejar cambio en tipo de comentario
+    const tipoComentario = document.getElementById('tipoComentario');
+    const valoracionContainer = document.getElementById('valoracionContainer');
+    const emprendimientoContainer = document.getElementById('emprendimientoContainer');
+    
+    tipoComentario.addEventListener('change', function() {
+        if (this.value === 'experiencia') {
+            valoracionContainer.classList.remove('d-none');
+            emprendimientoContainer.classList.remove('d-none');
+            document.getElementById('emprendimiento').required = true;
+        } else if (this.value === 'sugerencia') {
+            valoracionContainer.classList.add('d-none');
+            emprendimientoContainer.classList.remove('d-none');
+            document.getElementById('emprendimiento').required = true;
+        } else {
+            valoracionContainer.classList.add('d-none');
+            emprendimientoContainer.classList.add('d-none');
+            document.getElementById('emprendimiento').required = false;
+        }
+    });
+    
+    // 2. Manejar envío del formulario
+    const formComentarios = document.getElementById('formComentarios');
+    const comentariosLista = document.getElementById('comentariosLista');
+    
+    formComentarios.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validar formulario
+        if (!formComentarios.checkValidity()) {
+            formComentarios.reportValidity();
+            return;
+        }
+        
+        // Obtener valores
+        const nombre = document.getElementById('nombre').value;
+        const tipo = tipoComentario.value;
+        const mensaje = document.getElementById('mensaje').value;
+        const emprendimiento = tipo !== 'comentario' ? document.getElementById('emprendimiento').value : null;
+        const rating = tipo === 'experiencia' ? document.querySelector('input[name="rating"]:checked')?.value : null;
+        
+        // Crear comentario
+        const nuevoComentario = document.createElement('div');
+        nuevoComentario.className = 'col-12';
+        nuevoComentario.innerHTML = `
+            <div class="comentario-card ${tipo} mb-4">
+                <div class="comentario-header">
+                    <div class="comentario-avatar" style="background-color: ${getRandomColor()}">${nombre.charAt(0).toUpperCase()}</div>
+                    <div class="comentario-meta">
+                        <h5 class="comentario-autor">${nombre}</h5>
+                        <small class="comentario-fecha">${new Date().toLocaleDateString()}</small>
+                    </div>
+                    <span class="comentario-tipo tipo-${tipo}">
+                        ${tipo === 'comentario' ? 'Comentario' : tipo === 'sugerencia' ? 'Sugerencia' : 'Experiencia'}
+                    </span>
+                </div>
+                
+                ${emprendimiento ? `<div class="comentario-emprendimiento">${emprendimiento}</div>` : ''}
+                ${rating ? `<div class="comentario-rating">
+                    ${'<i class="fas fa-star" style="color: #FFD700;"></i>'.repeat(rating) + '<i class="far fa-star" style="color: #FFD700;"></i>'.repeat(5-rating)}
+                </div>` : ''}
+                
+                <div class="comentario-texto">
+                    <p>${mensaje}</p>
+                </div>
+                
+                <div class="comentario-footer">
+                    <button class="btn-like"><i class="far fa-thumbs-up"></i> <span class="like-count">0</span></button>
+                </div>
+            </div>
+        `;
+        
+        // Ocultar mensaje vacío si existe
+        const emptyMessage = document.querySelector('.empty-message');
+        if (emptyMessage) {
+            emptyMessage.style.display = 'none';
+        }
+        
+        // Agregar comentario
+        comentariosLista.prepend(nuevoComentario);
+        
+        // Funcionalidad "Me gusta"
+        nuevoComentario.querySelector('.btn-like').addEventListener('click', function() {
+            const likeCount = this.querySelector('.like-count');
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            this.innerHTML = `<i class="fas fa-thumbs-up"></i> <span class="like-count">${likeCount.textContent}</span>`;
+            this.style.color = '#4dabf7';
+        });
+        
+        // Resetear formulario
+        formComentarios.reset();
+        valoracionContainer.classList.add('d-none');
+        emprendimientoContainer.classList.add('d-none');
+        
+        // Mostrar notificación
+        showNotification('¡Comentario enviado con éxito!');
+    });
+    
+    // Función para color aleatorio del avatar
+    function getRandomColor() {
+        const colors = ['#4dabf7', '#69db7c', '#ffd43b', '#f783ac', '#9775fa', '#748ffc'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    // Función para mostrar notificación
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'position-fixed bottom-0 end-0 m-3';
+        notification.innerHTML = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        document.body.appendChild(notification);
+        
+        // Auto-eliminar después de 3 segundos
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+});
+</script>
+
+
    <!-- Footer -->
 <footer class="py-5 text-white" style="background: linear-gradient(to right, #6a11cb, #2575fc);" data-aos="fade-up">
     <div class="container">
