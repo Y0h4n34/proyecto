@@ -695,7 +695,7 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
     </div>
   </section>
 
-  <style>
+<style>
     /* Fondo galáctico con estrellas */
     #equipamiento {
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
@@ -902,46 +902,6 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
         line-height: 1.5;
     }
 
-    /* Controles del carrusel futuristas */
-    .carousel-controls {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 5, 15, 0.7);
-        border: 2px solid rgba(0, 212, 255, 0.5);
-        color: #00FFFF;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        backdrop-filter: blur(10px);
-        font-size: 1.8rem;
-        z-index: 10;
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-    }
-
-    .carousel-controls:hover {
-        background: rgba(0, 212, 255, 0.2);
-        border-color: #FF00FF;
-        color: white;
-        transform: translateY(-50%) scale(1.15);
-        box-shadow: 
-            0 0 30px rgba(0, 212, 255, 0.6),
-            0 0 15px rgba(255, 0, 255, 0.4);
-    }
-
-    .prev-btn {
-        left: 30px;
-    }
-
-    .next-btn {
-        right: 30px;
-    }
-
     /* Indicadores futuristas */
     .carousel-indicators {
         position: absolute;
@@ -1090,12 +1050,6 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
             font-size: 2.3rem;
         }
         
-        .carousel-controls {
-            width: 55px;
-            height: 55px;
-            font-size: 1.5rem;
-        }
-        
         .carousel-container {
             padding: 25px;
         }
@@ -1141,7 +1095,7 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
         <h2 class="section-title text-center animate-on-scroll">MÁQUINAS Y <span class="highlight"> EQUIPO</span></h2>
         <div class="text-center mb-5 animate-on-scroll">
             <p class="section-description">
-                En <strong class="gradient-text">Liceo Gym</strong> contamos con <strong>máquinas y un equipo </strong> que se adapta a tus necesidades, para que cada entrenamiento sea un experiencia de satisfacción y superación de <strong>límites personales.</strong><br>
+                En <strong class="gradient-text">Liceo Gym</strong> contamos con <strong>máquinas y un equipo </strong> que se adapta a tus necesidades, para que cada entrenamiento sea una experiencia de satisfacción y superación de <strong>límites personales.</strong><br>
             </p>
         </div>
         
@@ -1210,14 +1164,6 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
                     </div>
                 </div>
                 
-                <!-- Controles -->
-                <button class="carousel-controls prev-btn" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-controls next-btn" onclick="changeSlide(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-          
                 <!-- Indicadores -->
                 <div class="carousel-indicators" id="indicators"></div>
             </div>
@@ -1265,7 +1211,7 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
         startAutoSlide();
     });
 
-    // El resto del código JavaScript del carrusel permanece igual
+    // Configuración del carrusel
     let currentSlide = 0;
     const totalSlides = 12;
     let autoSlideInterval;
@@ -1318,11 +1264,6 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
     document.querySelector('.equipment-carousel').addEventListener('mouseenter', stopAutoSlide);
     document.querySelector('.equipment-carousel').addEventListener('mouseleave', startAutoSlide);
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight') changeSlide(1);
-    });
-
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -1345,6 +1286,7 @@ Con la creación de este proyecto, he facilitado el acceso a un espacio de este 
         }
     }
 </script>
+
   
   <!-- Galería Section -->
   <section id="galeria" class="section gallery-section">
